@@ -1,0 +1,11 @@
+{
+  "name": "lab5-02-jwt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.3"
+  }
+}

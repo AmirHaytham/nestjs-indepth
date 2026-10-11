@@ -14,7 +14,7 @@ screen.
 | 01 | `01-hashing` | Hashing, salt, bcrypt | `npm start` |
 | 02 | `02-jwt` | Tokens, JWT, JWT components | `npm start` |
 | 03 | `03-cors` | CORS | `npm start`, then two browser tabs |
-| 04 | `04-guards-and-metadata` | Guards, Reflector, metadata, roles | `npm run start:dev` and `npm run demo` |
+| 04 | `04-guards-and-metadata` | Middleware, guards, Reflector, metadata, roles | `npm run start:dev` and `npm run demo` |
 | 05 | `05-student-auth` | Recap, DTOs, the implementation slides, usage | `npm run start:dev` and `npm run demo` |
 
 Run `npm install` once inside a folder before its first run.
@@ -65,7 +65,7 @@ Running the slides' code turned up these. Details are in each folder's README.
 2. **01** hashing: same hash, then the salt.
 3. **02** JWT: build one by hand, read the payload, break the signature.
 4. **03** CORS: two tabs, then the server log.
-5. **04** guards: the demo table, then `npm run peek`.
+5. **04** middleware logs every request, then the guards table and `npm run peek`.
 6. **05** again, file by file, with "What the slide code gets wrong".
 
 Short on time? The spine is **02, 04, 05**.

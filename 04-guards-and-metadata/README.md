@@ -1,10 +1,10 @@
-# 04. Guards, Reflector and metadata
+# 04. Middleware, guards, Reflector and metadata
 
-From the guards, Reflector and metadata slides.
+From the middleware, guards, Reflector and metadata slides.
 
-The `UsersController` from the Reflector slide with a `RolesGuard`, plus a
-second controller that shows class level roles, route level overrides and
-`@Public`. No database and no real login: send an `x-role` header and you are
+The slide's `LoggerMiddleware` and a function middleware, then the
+`UsersController` from the Reflector slide with a `RolesGuard`, plus a second
+controller that shows class level roles, route level overrides and `@Public`. No database and no real login: send an `x-role` header and you are
 that user. Folder 05 replaces that with a JWT.
 
 ## Run it
@@ -36,6 +36,18 @@ npm run peek
 ```
 
 ## Worth showing
+
+**Middleware first.** Keep the API terminal visible while the demo runs. The
+slide's `LoggerMiddleware` prints `Request...` for every single call, including
+the 401s and 403s. Middleware runs before any guard and never knows which
+handler comes next. That is the slide's "main difference": middleware processes
+the request, a guard decides whether it can proceed.
+
+**Both kinds from the slide are here.** `LoggerMiddleware` is the class version,
+with `@Injectable()` and `NestMiddleware`. `courseHeader` is the function
+version, plain `(req, res, next)` like Express, and it adds an `X-Course` header
+to every response. Both are registered in `app.module.ts`, in the order they
+run. Forget `next()` in either one and every request hangs.
 
 **The demo prints one table:** each route against nobody, a student and an
 admin. Walk it row by row. It is the whole idea of guards in one screen.

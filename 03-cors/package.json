@@ -1,0 +1,13 @@
+{
+  "name": "lab5-03-cors",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "no-browser": "node no-browser.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

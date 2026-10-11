@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CORS demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; color: #1d2733; background: #f4f7fb; }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    .origin { font-family: ui-monospace, monospace; background: #fff; border: 1px solid #d5dde8; padding: 2px 6px; border-radius: 4px; }
+    button { font: inherit; padding: 8px 14px; margin: 16px 8px 0 0; border: 1px solid #2f5fa7; background: #2f5fa7; color: #fff; border-radius: 6px; cursor: pointer; }
+    pre { background: #fff; border: 1px solid #d5dde8; border-radius: 6px; padding: 12px; min-height: 60px; white-space: pre-wrap; }
+    .ok { border-color: #2e8b57; }
+    .fail { border-color: #c0392b; }
+  </style>
+</head>
+<body>
+  <h1>This page is on <span class="origin" id="origin"></span></h1>
+  <p>Both buttons call the API on <span class="origin">http://localhost:5001</span>.</p>
+  <button onclick="call('GET')">GET /data</button>
+  <button onclick="call('DELETE')">DELETE /data</button>
+  <pre id="out">Click a button.</pre>
+  <script>
+    document.getElementById('origin').textContent = location.origin;
+    const out = document.getElementById('out');
+
+    async function call(method) {
+      out.className = '';
+      out.textContent = `${method} /data ...`;
+      try {
+        const res = await fetch('http://localhost:5001/data', { method, credentials: 'include' });
+        out.className = 'ok';
+        out.textContent = `${res.status}\n${await res.text()}`;
+      } catch (e) {
+        out.className = 'fail';
+        out.textContent = `Blocked by the browser: ${e.message}\n\nOpen DevTools (F12), Console tab, to see the CORS error.`;
+      }
+    }
+  </script>
+</body>
+</html>

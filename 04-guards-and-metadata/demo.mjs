@@ -19,6 +19,9 @@ try {
   const res = await fetch(base + '/users/admin', { headers: { 'x-role': 'student' } });
   console.log('\nWhat a student sees on /users/admin:');
   console.log(' ', await res.text());
+  console.log(`  X-Course header from the function middleware: ${res.headers.get('x-course')}`);
+  console.log('\nNow look at the API terminal: the logger middleware printed every request,');
+  console.log('including the ones the guard refused.');
 } catch (error) {
   console.log(`Could not reach ${base}. Is the API running? (${error.cause?.code ?? error.message})`);
 }

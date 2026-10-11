@@ -40,4 +40,7 @@ describe('Guards and metadata', () => {
   it('route level @Roles overrides the class', () => get('/reports/mine', 'student').expect(200));
 
   it('@Public skips the check entirely', () => get('/reports/schedule').expect(200));
+
+  it('middleware runs even when the guard says no', () =>
+    get('/users/admin', 'student').expect(403).expect('X-Course', 'SP1'));
 });
